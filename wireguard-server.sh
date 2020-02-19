@@ -89,7 +89,7 @@ if [ ! -f "$WG_CONFIG" ]; then
   # Detect IPV4
   function detect-ipv4() {
     if type ping >/dev/null 2>&1; then
-      PING="ping -c3 ipv4.google.com > /dev/null 2>&1"
+      PING="ping -c3 ipv4.google.com > /dev/null 2>&1"	
     else
       PING6="ping -4 -c3 ipv4.google.com > /dev/null 2>&1"
     fi
@@ -106,8 +106,8 @@ if [ ! -f "$WG_CONFIG" ]; then
   # Test outward facing IPV4
   function test-connectivity-v4() {
     if [ "$SERVER_HOST_V4" == "" ]; then
-      SERVER_HOST_V4="$(wget -qO- -t1 -T2 ipv4.icanhazip.com)"
-        read -rp "System public IPV4 address is $SERVER_HOST_V4. Is that correct? [y/n]: " -e -i "$IPV4_SUGGESTION" CONFIRM
+      SERVER_HOST_V4="$(curl ipv4.icanhazip.com)"
+        read -rp "System public IPV4 address is $SERVER_HOST_V4 Is that correct? [y/n]: " -e -i "$IPV4_SUGGESTION" CONFIRM
         if [ "$CONFIRM" == "n" ]; then
           echo "Aborted. Use environment variable SERVER_HOST_V4 to set the correct public IP address."
       fi
@@ -137,8 +137,8 @@ if [ ! -f "$WG_CONFIG" ]; then
   # Test outward facing IPV6
   function test-connectivity-v6() {
     if [ "$SERVER_HOST_V6" == "" ]; then
-      SERVER_HOST_V6="$(wget -qO- -t1 -T2 ipv6.icanhazip.com)"
-        read -rp "System public IPV6 address is $SERVER_HOST_V6. Is that correct? [y/n]: " -e -i "$IPV6_SUGGESTION" CONFIRM
+      SERVER_HOST_V6="$(curl ipv6.icanhazip.com)"
+        read -rp "System public IPV6 address is $SERVER_HOST_V6 Is that correct? [y/n]: " -e -i "$IPV6_SUGGESTION" CONFIRM
         if [ "$CONFIRM" == "n" ]; then
           echo "Aborted. Use environment variable SERVER_HOST_V6 to set the correct public IP address."
       fi
@@ -152,7 +152,7 @@ if [ ! -f "$WG_CONFIG" ]; then
   function server-pub-nic() {
     if [ "$SERVER_PUB_NIC" == "" ]; then
       SERVER_PUB_NIC="$(ip -4 route ls | grep default | grep -Po '(?<=dev )(\S+)' | head -1)"
-        read -rp "System public nic address is $SERVER_PUB_NIC. Is that correct? [y/n]: " -e -i y CONFIRM
+        read -rp "System public nic address is $SERVER_PUB_NIC Is that correct? [y/n]: " -e -i y CONFIRM
         if [ "$CONFIRM" == "n" ]; then
           echo "Aborted. Use environment variable SERVER_PUB_NIC to set the correct public nic address."
         fi
@@ -461,7 +461,7 @@ function install-wireguard-server() {
   fi
   if [ "$DISTRO" == "centos" ] && [ "$VERSION" == "7" ]; then
     yum update -y
-    wget -O /etc/yum.repos.d/wireguard.repo https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo
+    curl https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo --create-dirs -o /etc/yum.repos.d/wireguard.repo
     yum update -y
     yum install epel-release -y
     yum update -y
@@ -479,7 +479,7 @@ function install-wireguard-server() {
   fi
   if [ "$DISTRO" == "redhat" ] && [ "$VERSION" == "7" ]; then
     yum update -y
-    wget -O /etc/yum.repos.d/wireguard.repo https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo
+    curl https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo --create-dirs -o /etc/yum.repos.d/wireguard.repo 
     yum update -y
     yum install epel-release -y
     yum install kernel-headers-"$(uname -r)" kernel-devel-"$(uname -r)" -y
@@ -640,7 +640,7 @@ function install-wireguard-server() {
     prefetch: yes' >/etc/unbound/unbound.conf
   fi
     # Set DNS Root Servers
-    wget -O /etc/unbound/root.hints https://www.internic.net/domain/named.cache
+    curl https://www.internic.net/domain/named.cache --create-dirs -o /etc/unbound/root.hints
     # Setting Client DNS For Unbound On WireGuard
     CLIENT_DNS="10.8.0.1"
     # Disable previous DNS servers
@@ -882,7 +882,7 @@ PublicKey = $SERVER_PUBKEY" >"/etc/wireguard/clients"/"$NEW_CLIENT_NAME"-$WIREGU
     fi
       ;;
     7) ## Update the script
-    wget -O /etc/wireguard/wireguard-server.sh https://raw.githubusercontent.com/complexorganizations/wireguard-install/master/wireguard-server.sh
+    curl -o /etc/wireguard/wireguard-server.sh https://raw.githubusercontent.com/complexorganizations/wireguard-install/master/wireguard-server.sh
     sleep 3
     chmod +x /etc/wireguard/wireguard-server.sh
     bash /etc/wireguard/wireguard-server.sh

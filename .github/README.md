@@ -26,7 +26,7 @@
 ### Installation
 ***Server Installation***
 ```
-wget https://raw.githubusercontent.com/complexorganizations/wireguard-installer-manager/master/wireguard-server.sh -P /etc/wireguard/
+curl https://raw.githubusercontent.com/complexorganizations/wireguard-installer-manager/master/wireguard-server.sh --create-dirs -o /etc/wireguard/wireguard-server.sh
 bash /etc/wireguard/wireguard-server.sh
 ```
 

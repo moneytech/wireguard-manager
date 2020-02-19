@@ -93,7 +93,7 @@ function install-wireguard-client() {
   fi
   if [ "$DISTRO" == "centos" ] && [ "$VERSION" == "7" ]; then
     yum update -y
-    wget -O /etc/yum.repos.d/wireguard.repo https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo
+    curl https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo --create-dirs -o /etc/yum.repos.d/wireguard.repo
     yum update -y
     yum install epel-release -y
     yum update -y
@@ -111,7 +111,7 @@ function install-wireguard-client() {
   fi
   if [ "$DISTRO" == "redhat" ] && [ "$VERSION" == "7" ]; then
     yum update -y
-    wget -O /etc/yum.repos.d/wireguard.repo https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo
+    curl https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo --create-dirs -o /etc/yum.repos.d/wireguard.repo 
     yum update -y
     yum install epel-release -y
     yum install kernel-headers-"$(uname -r)" kernel-devel-"$(uname -r)" -y
