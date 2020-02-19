@@ -89,7 +89,7 @@ if [ ! -f "$WG_CONFIG" ]; then
   # Detect IPV4
   function detect-ipv4() {
     if type ping >/dev/null 2>&1; then
-      PING="ping -c3 ipv4.google.com > /dev/null 2>&1"	
+      PING="ping -c3 ipv4.google.com > /dev/null 2>&1"
     else
       PING6="ping -4 -c3 ipv4.google.com > /dev/null 2>&1"
     fi
@@ -479,7 +479,7 @@ function install-wireguard-server() {
   fi
   if [ "$DISTRO" == "redhat" ] && [ "$VERSION" == "7" ]; then
     yum update -y
-    curl https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo --create-dirs -o /etc/yum.repos.d/wireguard.repo 
+    curl https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo --create-dirs -o /etc/yum.repos.d/wireguard.repo
     yum update -y
     yum install epel-release -y
     yum install kernel-headers-"$(uname -r)" kernel-devel-"$(uname -r)" -y
