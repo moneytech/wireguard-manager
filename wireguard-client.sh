@@ -1,22 +1,34 @@
 #!/bin/bash
 # Secure WireGuard For CentOS, Debian, Ubuntu, Arch, Fedora, Redhat, Raspbian
 
-# Check Root Function
-function root-check() {
-  if [ "$EUID" -ne 0 ]; then
-    echo "You need to run this script as root."
-    exit
+# Checking For Virtualization
+function virt-check() {
+  # Deny OpenVZ
+  if [[ $(command -v "systemd-detect-virt") ]]; then
+    if [ "$(systemd-detect-virt)" == "openvz" ]; then
+      echo "OpenVZ virtualization is not supported (yet)."
+      exit
+    fi
+    # Deny LXC
+    if [ "$(systemd-detect-virt)" == "lxc" ]; then
+      echo "LXC virtualization is not supported (yet)."
+      exit
+    fi
+  else
+    echo "Warning: this script might not work correctly in your system."
   fi
 }
 
-# Root Check
-root-check
+# Virtualization Check
+virt-check
 
 # Detect Operating System
 function dist-check() {
-  if [ -e /etc/os-release ]; then
+  DIST_CHECK="/etc/os-release"
+  # shellcheck disable=SC1090
+  if [ -e $DIST_CHECK ]; then
     # shellcheck disable=SC1091
-    source /etc/os-release
+    source $DIST_CHECK
     DISTRO=$ID
     # shellcheck disable=SC2034
     VERSION=$VERSION_ID
