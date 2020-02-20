@@ -32,13 +32,13 @@ dist-check
 # Install WireGuard Client
 function install-wireguard-client() {
   # Installation begins here.
-    if [ "$DISTRO" == "ubuntu" ] && [ "$VERSION" == "19.10" ]; then
+  if [ "$DISTRO" == "ubuntu" ] && [ "$VERSION" == "19.10" ]; then
     apt-get update
     apt-get install linux-headers-"$(uname -r)" -y
     apt-get install wireguard qrencode haveged resolvconf -y
   fi
   # shellcheck disable=SC2235
-  if [ "$DISTRO" == "ubuntu" ] && ( [ "$VERSION" == "16.04" ] || [ "$VERSION" == "18.04" ] ); then
+  if [ "$DISTRO" == "ubuntu" ] && ([ "$VERSION" == "16.04" ] || [ "$VERSION" == "18.04" ]); then
     apt-get update
     apt-get install software-properties-common -y
     add-apt-repository ppa:wireguard/wireguard -y
@@ -76,7 +76,7 @@ function install-wireguard-client() {
     dnf install qrencode wireguard-tools haveged resolvconf -y
   fi
   # shellcheck disable=SC2235
-  if [ "$DISTRO" = 'fedora' ] && ( [ "$VERSION" == "30" ] || [ "$VERSION" == "31" ] ); then
+  if [ "$DISTRO" = 'fedora' ] && ([ "$VERSION" == "30" ] || [ "$VERSION" == "31" ]); then
     dnf update -y
     dnf copr enable jdoss/wireguard -y
     dnf install kernel-headers-"$(uname -r)" kernel-devel-"$(uname -r)" -y
@@ -111,13 +111,13 @@ function install-wireguard-client() {
   fi
   if [ "$DISTRO" == "redhat" ] && [ "$VERSION" == "7" ]; then
     yum update -y
-    curl https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo --create-dirs -o /etc/yum.repos.d/wireguard.repo 
+    curl https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo --create-dirs -o /etc/yum.repos.d/wireguard.repo
     yum update -y
     yum install epel-release -y
     yum install kernel-headers-"$(uname -r)" kernel-devel-"$(uname -r)" -y
     yum install wireguard-dkms wireguard-tools qrencode haveged resolvconf -y
   fi
-  }
+}
 
-  # WireGuard Client
-  install-wireguard-client
+# WireGuard Client
+install-wireguard-client
