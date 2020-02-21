@@ -63,8 +63,8 @@ In your `/etc/wireguard/clients` directory, you will have `.conf` files. These a
 
 ---
 ### Options
-* `PRIVATE_SUBNET_V4` - private subnet configuration, `10.8.0.0/24` by default
-* `PRIVATE_SUBNET_V6` - private subnet configuration, `fd42:42:42::0/64` by default
+* `PRIVATE_SUBNET_V4` - private IPv4 subnet configuration `10.8.0.0/24` by default
+* `PRIVATE_SUBNET_V6` - private IPv6 subnet configuration `fd42:42:42::0/64` by default
 * `SERVER_HOST_V4` - public IPv4 address, detected by default using `curl`
 * `SERVER_HOST_V6` - public IPv6 address, detected by default using `curl`
 * `SERVER_PUB_NIC` - public nig address, detected by default
