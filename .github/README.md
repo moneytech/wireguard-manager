@@ -29,7 +29,7 @@ Lets first use `curl` and save the file in `/etc/wireguard/`
 ```
 curl https://raw.githubusercontent.com/complexorganizations/wireguard-installer-manager/master/wireguard-server.sh --create-dirs -o /etc/wireguard/wireguard-server.sh
 ```
-Than lets make the script user executable
+Than lets make the script user executable (Optional)
 ```
 chmod +x /etc/wireguard/wireguard-server.sh
 ```
