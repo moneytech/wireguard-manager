@@ -99,7 +99,6 @@ In your `/etc/wireguard/clients` directory, you will have `.conf` files. These a
 | LXC             |:x:                 |:x:                 |:x:                 |:x:                 |:x:                 |
 | KVM             |:white_check_mark:  |:white_check_mark:  |:white_check_mark:  |:white_check_mark:  |:white_check_mark:  |
 | OpenVZ          |:x:                 |:x:                 |:x:                 |:x:                 |:x:                 |
-
 ### Compatibility with Cloud Providers
 | Cloud           | Supported          |
 | --------------  | ------------------ |
