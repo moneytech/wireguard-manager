@@ -65,10 +65,11 @@ In your `/etc/wireguard/clients` directory, you will have `.conf` files. These a
 * `SERVER_HOST_V6` - public IPv6 address, detected by default using `curl`
 * `SERVER_PUB_NIC` - public nig address, detected by default
 * `SERVER_PORT` - public port for wireguard server, default is `51820`
-* `DISABLE_HOST` - Disable or enable ipv4 and ipv6
-* `CLIENT_ALLOWED_IP` - Traffic that goes through the tunnel
-* `NAT_CHOICE` - keep alive settings for wireguard client `25`
+* `DISABLE_HOST` - Disable or enable ipv4 and ipv6, default disabled
+* `CLIENT_ALLOWED_IP` - private or public IP range allowed in the tunnel
+* `NAT_CHOICE` - Keep sending packets to keep the tunnel alive `25`
 * `INSTALL_UNBOUND` - Install unbound settings `y/n`
+* `DNS_CHOICE` - Without Unbound you have to use a public dns like `8.8.8.8`
 * `CLIENT_NAME` - name of the client
 * `MTU_CHOICE` - the MTU the client will use to connect to DNS `1420`
 
@@ -145,13 +146,13 @@ Official Links
 ---
 ### Developing
 Using a browser based development environment:
-
 [![Open in Gitpod](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/complexorganizations/wireguard-install)
 
-Using local development environment:
-```
-git clone https://github.com/complexorganizations/wireguard-installer-manager
-```
+Channels:
+- [Master](https://github.com/complexorganizations/wireguard-manager/tree/master) (Stable)
+- [Beta](https://github.com/complexorganizations/wireguard-manager/tree/Beta) (Testing)
+- [Dev](https://github.com/complexorganizations/wireguard-manager/tree/Dev) (Development)
+
 ### Debugging
 ```
 git clone https://github.com/complexorganizations/wireguard-installer-manager /etc/wireguard/
