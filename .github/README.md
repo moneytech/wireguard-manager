@@ -136,7 +136,7 @@ Is there WireGuard documentation?
 How do i install wireguard without the questions? (Headless Install) ***Server Only***
 - ```HEADLESS_INSTALL=y /etc/wireguard/wireguard-server.sh```
 
-### Official Links
+Official Links
 - Homepage: https://www.wireguard.com
 - Install: https://www.wireguard.com/install/
 - QuickStart: https://www.wireguard.com/quickstart/
