@@ -89,11 +89,6 @@ function usage-guide() {
   exit
 }
 
-if [ "$#" -ne 13 ]
-then
-  usage
-fi
-
 while [ "$1" != "" ]; do
 case $1 in
         --install )    shift
