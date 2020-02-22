@@ -97,22 +97,31 @@ fi
 while [ "$1" != "" ]; do
 case $1 in
         --install )    shift
-                       install-wireguard-server=$1
+                       HEADLESS_INSTALL=${HEADLESS_INSTALL:-y}=$1
                        ;;
-        -i )           shift
-                       INSTANCE=$1
+        --start )      shift
+                       WIREGUARD_OPTIONS=${WIREGUARD_OPTIONS:-2}=$1
                        ;;
-        -u )           shift
-                       USER=$1
+        --stop )       shift
+                       WIREGUARD_OPTIONS=${WIREGUARD_OPTIONS:-3}=$1
                        ;;
-        -p )           shift
-                       PASSWORD=$1
+        --restart )    shift
+                       WIREGUARD_OPTIONS=${WIREGUARD_OPTIONS:-4}=$1
                        ;;
-        -w )           shift
-                       WARNINGVAL=$1
+        --list )       shift
+                       WIREGUARD_OPTIONS=${WIREGUARD_OPTIONS:-1}=$1
                        ;;
-        -c )           shift
-                       CRITICVAL=$1
+        --add )        shift
+                       WIREGUARD_OPTIONS=${WIREGUARD_OPTIONS:-5}=$1
+                       ;;
+        --remove )     shift
+                       WIREGUARD_OPTIONS=${WIREGUARD_OPTIONS:-6}=$1
+                       ;;
+        --uninstall )  shift
+                       WIREGUARD_OPTIONS=${WIREGUARD_OPTIONS:-7}=$1
+                       ;;
+        --update )  shift
+                       WIREGUARD_OPTIONS=${WIREGUARD_OPTIONS:-8}=$1
                        ;;
         * )            QUERY=$1
     esac
