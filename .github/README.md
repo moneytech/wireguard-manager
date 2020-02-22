@@ -50,6 +50,7 @@ In your `/etc/wireguard/clients` directory, you will have `.conf` files. These a
 - Uninstall WireGuard Interface
 - Update this script
 
+
 ---
 ### Features
 - Installs and configures a ready-to-use WireGuard Interface
@@ -60,6 +61,21 @@ In your `/etc/wireguard/clients` directory, you will have `.conf` files. These a
 - The choice to use a self-hosted resolver with Unbound.
 - Block DNS leaks
 - Many other little things!
+
+---
+### Usage 
+```
+usage: wireguard-manager <command>
+  --install     Install WireGuard Interface
+  --start       Start WireGuard Interface
+  --stop        Stop WireGuard Interface
+  --restart     Restart WireGuard Interface
+  --list        Show WireGuard Peers
+  --add         Add WireGuard Peer
+  --remove      Remove WireGuard Peer
+  --uninstall   Uninstall WireGuard Interface
+  --update      Update WireGuard Script
+```
 
 ---
 ### Options
