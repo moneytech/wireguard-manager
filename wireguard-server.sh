@@ -89,6 +89,36 @@ function usage-guide() {
   exit
 }
 
+if [ "$#" -ne 13 ]
+then
+  usage
+fi
+
+while [ "$1" != "" ]; do
+case $1 in
+        --install )    shift
+                       install-wireguard-server=$1
+                       ;;
+        -i )           shift
+                       INSTANCE=$1
+                       ;;
+        -u )           shift
+                       USER=$1
+                       ;;
+        -p )           shift
+                       PASSWORD=$1
+                       ;;
+        -w )           shift
+                       WARNINGVAL=$1
+                       ;;
+        -c )           shift
+                       CRITICVAL=$1
+                       ;;
+        * )            QUERY=$1
+    esac
+    shift
+done
+
 # Wireguard Public Network Interface
 WIREGUARD_PUB_NIC="wg0"
 # Location For WG_CONFIG
